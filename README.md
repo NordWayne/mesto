@@ -9,5 +9,5 @@
 ## Планы на проект
  - Добавить возможность добавлять фотографии и лайкать их
 
- Проект посмотреть можно по  [ссылке](https://nordwayne.github.io/russian-travel/index.html).
+ Проект посмотреть можно по  [ссылке](https://nordwayne.github.io/mesto/index.html).
 
