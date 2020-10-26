@@ -1,0 +1,14 @@
+.popup__save{
+    max-width: 358px;
+    width:100%;
+    height:50px;
+    background-color: #000;
+    color:#fff;
+    border: none;
+}
+.popup__save:focus{
+    outline: none;
+}
+.popup__save:hover{
+   opacity:0.8;
+}

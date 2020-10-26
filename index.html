@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Место</title>
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header__logo"></div>
+        </header>
+        <main class="main">
+            <section class="profile">
+                <div class="profile__container">
+                    <div class="profile__avatar"></div>
+                    <div class="profile__info">
+                        <div class="profile__wrapper">
+                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <button class="profile__edit-button" type="button"><img src="./images/EditButton.svg" alt="изменить"></button>
+                        </div>
+                        <p class="profile__activity">Исследователь океана</p>    
+                    </div>
+                </div>
+                <button type="button" class="profile__add-button"><img src="./images/AddButton.svg" alt="Добавить"></button>
+            </section>
+            <section class="photo-cards">
+                <ul class="cards">
+                    <li class="card">
+                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
+                        <div class="card__bottom">
+                            <h2 class="card__title">Карачаевск</h2>
+                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
+                        <div class="card__bottom">
+                            <h2 class="card__title">Гора Эльбрус</h2>
+                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
+                        <div class="card__bottom">
+                            <h2 class="card__title">Домбай</h2>
+                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
+                        <div class="card__bottom">
+                            <h2 class="card__title">Гора Эльбрус</h2>
+                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
+                        <div class="card__bottom">
+                            <h2 class="card__title">Домбай</h2>
+                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
+                        <div class="card__bottom">
+                            <h2 class="card__title">Карачаево-Черкеск</h2>
+                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
+                        </div>
+                    </li>
+
+                </ul>
+            </section>  
+
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright">© 2020 Mesto Russia</p>
+        </footer>
+    </div>
+    <div class="popup">
+        <div class="popup__content">
+            <button type="button" class="popup__close"></button>  
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form class="popup__form">
+                <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
+                <input type="text" placeholder="Профессия" class="popup__input popup__input_type_activity">
+                <button type="submit" class="popup__save">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <script src="./scripts/index.js"></script>
+</body>
+</html>
