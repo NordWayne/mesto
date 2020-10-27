@@ -2,11 +2,5 @@
     min-width: 120px;
     max-width: 120px;
     height:120px;
-    background-image: url("../../../images/profile_pic.jpg");
     border-radius: 50%;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-left:10px;
-    
 }

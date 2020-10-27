@@ -14,11 +14,11 @@
         <main class="main">
             <section class="profile">
                 <div class="profile__container">
-                    <div class="profile__avatar"></div>
+                    <img src="./images/profile_pic.jpg" class="profile__avatar">
                     <div class="profile__info">
                         <div class="profile__wrapper">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
-                            <button class="profile__edit-button" type="button"><img src="./images/EditButton.svg" alt="изменить"></button>
+                            <button class="profile__edit-button" type="button"><img class="profile__img-edit" src="./images/EditButton.svg" alt="изменить"></button>
                         </div>
                         <p class="profile__activity">Исследователь океана</p>    
                     </div>
@@ -82,7 +82,7 @@
         <div class="popup__content">
             <button type="button" class="popup__close"></button>  
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__form">
+            <form name = "changeTitle"class="popup__form">
                 <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
                 <input type="text" placeholder="Профессия" class="popup__input popup__input_type_activity">
                 <button type="submit" class="popup__save">Сохранить</button>
