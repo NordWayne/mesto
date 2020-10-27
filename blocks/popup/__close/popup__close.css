@@ -17,7 +17,7 @@
 .popup__close:focus{
     outline: none;
 }
-@media screen and (max-width: 400px){
+@media screen and (max-width: 450px){
     .popup__close{
         right:0;
         top:-44px;
