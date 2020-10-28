@@ -14,7 +14,7 @@
         <main class="main">
             <section class="profile">
                 <div class="profile__container">
-                    <img src="./images/profile_pic.jpg" class="profile__avatar">
+                    <img src="./images/profile_pic.jpg" class="profile__avatar" alt="Фото профиля">
                     <div class="profile__info">
                         <div class="profile__wrapper">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -82,9 +82,9 @@
         <div class="popup__content">
             <button type="button" class="popup__close"></button>  
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form name = "changeTitle" class="popup__form">
-                <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
-                <input type="text" placeholder="Профессия" class="popup__input popup__input_type_activity">
+            <form name = "change-title" class="popup__form">
+                <input type="text" name = "profile-name" placeholder="Имя" class="popup__input popup__input_type_name">
+                <input type="text" name = "profile-activity" placeholder="Профессия" class="popup__input popup__input_type_activity">
                 <button type="submit" class="popup__save">Сохранить</button>
             </form>
         </div>
