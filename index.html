@@ -26,50 +26,7 @@
                 <button type="button" class="profile__add-button"><img src="./images/AddButton.svg" alt="Добавить"></button>
             </section>
             <section class="photo-cards">
-                <ul class="cards">
-                    <li class="card">
-                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
-                        <div class="card__bottom">
-                            <h2 class="card__title">Карачаевск</h2>
-                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
-                        <div class="card__bottom">
-                            <h2 class="card__title">Гора Эльбрус</h2>
-                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
-                        <div class="card__bottom">
-                            <h2 class="card__title">Домбай</h2>
-                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
-                        <div class="card__bottom">
-                            <h2 class="card__title">Гора Эльбрус</h2>
-                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
-                        <div class="card__bottom">
-                            <h2 class="card__title">Домбай</h2>
-                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__photo" src="./images/card-photo-dombai.jpg" alt="Фото Домбай">
-                        <div class="card__bottom">
-                            <h2 class="card__title">Карачаево-Черкеск</h2>
-                            <button type="button" class="card__like"><img src="./images/like.svg" alt="Лайк"></button>
-                        </div>
-                    </li>
-
+                <ul class="cards">              
                 </ul>
             </section>  
 
@@ -78,17 +35,46 @@
             <p class="footer__copyright">© 2020 Mesto Russia</p>
         </footer>
     </div>
-    <div class="popup">
+    <div class="popup popup_edit">
         <div class="popup__content">
-            <button type="button" class="popup__close"></button>  
+            <button type="button" class="popup__close popup__close_edit"></button>  
             <h3 class="popup__title">Редактировать профиль</h3>
             <form name = "change-title" class="popup__form">
-                <input type="text" name = "profile-name" placeholder="Имя" class="popup__input popup__input_type_name">
-                <input type="text" name = "profile-activity" placeholder="Профессия" class="popup__input popup__input_type_activity">
+                <input type="text" name = "profile-name" placeholder="Имя" class="popup__input popup__input_type_name popup__input_profile-name">
+                <input type="text" name = "profile-activity" placeholder="Профессия" class="popup__input popup__input_type_activity popup__input_profile-activity">
                 <button type="submit" class="popup__save">Сохранить</button>
             </form>
         </div>
     </div>
+    <div class="popup popup_add">
+        <div class="popup__content">
+            <button type="button" class="popup__close popup__close_add"></button>  
+            <h3 class="popup__title">Новое место</h3>
+            <form name = "change-title" class="popup__form">
+                <input type="text" name = "card-name" placeholder="Название" class="popup__input popup__input_type_name popup__input_card-name">
+                <input type="text" name = "card-link" placeholder="Ссылка на картинку" class="popup__input popup__input_type_activity popup__input_card-link">
+                <button type="submit" class="popup__save">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_photo">
+            <div class="popup__photo-container">
+                <button type="button" class="popup__close popup__close_photo"></button>  
+                <img class="popup__photo" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Фото">
+                <p class="popup__photo-title">Что-то</p>
+            </div>
+        
+    </div>
+    <template class="template-card">
+        <li class="card">
+            <img class="card__photo" src="" alt="Фото">
+            <button class="card__delete" type="button"></button>
+            <div class="card__bottom">
+                <h2 class="card__title"></h2>
+                <button type="button" class="card__like"></button>
+            </div>
+        </li>
+    </template>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
