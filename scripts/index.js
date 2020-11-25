@@ -1,4 +1,5 @@
 const popup = document.querySelector(".popup");
+const popupList = document.querySelectorAll(".popup");
 const popupAdd = document.querySelector(".popup_add");
 const popupEdit = document.querySelector(".popup_edit");
 const popupPhoto = document.querySelector(".popup_photo");
@@ -46,7 +47,7 @@ const initialCards = [
 
 
 function showPopup(evt){
-    console.log(evt.target);
+    document.addEventListener("keydown", keyChecker)
     if(evt.target.classList.contains("profile__img-edit")){
         popupEdit.classList.add("popup_opened");
         formName.value = profileTitle.textContent;
@@ -58,23 +59,20 @@ function showPopup(evt){
     else{
         popupPhoto.classList.add("popup_opened");
     }
-    console.log("opened");
 }
 
 function closePopup(e){
-    console.log(1);
-    e.classList.remove("popup_opened");  
+    e.classList.remove("popup_opened");
+    document.removeEventListener("keydown", keyChecker); 
 }
 function submitFormEdit(e){
     e.preventDefault();
-    console.log(1);
     profileTitle.textContent =formName.value;
     profileActivity.textContent =formActivity.value;
     popup.classList.remove("popup_opened");
 }
 function submitFormAdd(e){
     e.preventDefault();
-    console.log(1);
     const card ={
         name:"",
         link:""
@@ -96,6 +94,7 @@ function createCard(element){
     const delButton = cardTemplate.querySelector(".card__delete");
     photo.addEventListener("click",()=>{
         popupPhoto.classList.add("popup_opened");
+        document.addEventListener("keydown", keyChecker);       
         const img = popupPhoto.querySelector(".popup__photo");
         img.src=element.link;
         img.alt = "Фото " + element.name;
@@ -116,10 +115,24 @@ function addCard(element){
     const cardElement = createCard(element);
     cards.append(cardElement);
 }
+function keyChecker(evt){
+    if (evt.code=="Escape"){
+        closePopup(document.querySelector(".popup_opened"))
+    }
+}
 initialCards.forEach(addCard);
 popupCloseAddButton.addEventListener("click",()=>closePopup(popupAdd));
 popupCloseEditButton.addEventListener("click",()=>closePopup(popupEdit));
 popupClosePhotoButton.addEventListener("click",()=>closePopup(popupPhoto));
+popupList.forEach((popupEl)=>{
+    popupEl.addEventListener("click",(evt)=>{
+        if (evt.target.classList.contains("popup")){
+                           
+            closePopup(evt.target)
+        }
+    });
+})
+
 editButton.addEventListener("click", showPopup);
 addButton.addEventListener("click", showPopup);
 formEdit.addEventListener("submit", submitFormEdit);

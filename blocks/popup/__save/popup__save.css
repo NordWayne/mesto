@@ -5,6 +5,7 @@
     background-color: #000;
     color:#fff;
     border: none;
+    margin-top: 48px;
 }
 .popup__save:focus{
     outline: none;
