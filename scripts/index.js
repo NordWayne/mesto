@@ -71,8 +71,9 @@ function submitFormAdd(e){
     card.link =formCardLink.value;
     addCard(card);
     formCardName.value=""; 
-    formCardLink.value=""; 
+    formCardLink.value="";
     closePopup(popupAdd);
+    setButtonState(formAdd.querySelector(".popup__save"), false, validationConfig)
 }
 function createCard(element){
     const cardTemplate = document.querySelector(".template-card").content.cloneNode(true);
