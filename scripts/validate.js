@@ -45,6 +45,7 @@ function enableValidation(config) {
     forms.forEach((form) => {
         setEventListeners(form, config);
         const submitButton = form.querySelector(config.submitButtonSelector);
+        
         setButtonState(submitButton, form.checkValidity(), config)
     });
 }
