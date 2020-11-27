@@ -49,6 +49,7 @@ const initialCards = [
 
 function showPopup(popupForm){
     popupForm.classList.add("popup_opened");
+    document.addEventListener("keydown", keyChecker); 
 }
 
 function closePopup(e){
@@ -67,8 +68,6 @@ function submitFormAdd(e){
         name: formCardName.value,
         link: formCardLink.value
     }
-    card.name =formCardName.value;
-    card.link =formCardLink.value;
     addCard(card);
     formCardName.value=""; 
     formCardLink.value="";
@@ -84,8 +83,7 @@ function createCard(element){
     const likeButton = cardTemplate.querySelector(".card__like");
     const delButton = cardTemplate.querySelector(".card__delete");
     photo.addEventListener("click",()=>{
-        showPopup(popupPhoto);
-        document.addEventListener("keydown", keyChecker);       
+        showPopup(popupPhoto);      
         const img = popupPhoto.querySelector(".popup__photo");
         img.src=element.link;
         img.alt = "Фото " + element.name;
