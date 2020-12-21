@@ -1,3 +1,5 @@
+import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
 const popup = document.querySelector(".popup");
 const popupList = document.querySelectorAll(".popup");
 const popupAdd = document.querySelector(".popup_add");
@@ -17,34 +19,17 @@ const formCardLink = document.querySelector(".popup__input_card-link");
 const profileTitle = document.querySelector(".profile__name");
 const profileActivity = document.querySelector(".profile__activity");
 const cards=document.querySelector(".cards");
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-]; 
-
-
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save',
+    inputInvalidClass: 'popup__input_state_invalid',
+    buttonInvalidClass: 'popup__save_invalid',
+};
+const editFormValidator = new FormValidator(validationConfig,document.querySelector(".popup__form_edit"));
+editFormValidator.enableValidation();
+const addFormValidator = new FormValidator(validationConfig,document.querySelector(".popup__form_add"));
+addFormValidator.enableValidation();
 
 
 function showPopup(popupForm){
@@ -67,48 +52,25 @@ function submitFormAdd(e){
     const card ={
         name: formCardName.value,
         link: formCardLink.value
-    }
-    addCard(card);
+    };
+    const newCard = new Card(card,".template-card");
+    generateCard(newCard);
     formCardName.value=""; 
     formCardLink.value="";
     closePopup(popupAdd);
-    setButtonState(formAdd.querySelector(".popup__save"), false, validationConfig)
+    addFormValidator._setButtonState(formAdd.querySelector(".popup__save"), false, validationConfig)
 }
-function createCard(element){
-    const cardTemplate = document.querySelector(".template-card").content.cloneNode(true);
-    const photo = cardTemplate.querySelector(".card__photo");
-    cardTemplate.querySelector(".card__title").textContent = element.name;
-    photo.src = element.link;
-    photo.alt = "Фото "+ element.name;
-    const likeButton = cardTemplate.querySelector(".card__like");
-    const delButton = cardTemplate.querySelector(".card__delete");
-    photo.addEventListener("click",()=>{
-        showPopup(popupPhoto);      
-        const img = popupPhoto.querySelector(".popup__photo");
-        img.src=element.link;
-        img.alt = "Фото " + element.name;
-        popupPhoto.querySelector(".popup__photo-title").textContent=element.name;
-        
-    })
-    likeButton.addEventListener("click",()=>{
-        likeButton.classList.toggle("card__like_liked");
-    })
-    delButton.addEventListener("click",()=>{
-        const card = delButton.closest(".card");
-        card.remove();
-    })
-    return cardTemplate;
+
+function generateCard(element){
+        const card = element.createCard();   
+        cards.prepend(card);
 }
-function addCard(element){
-    const cardElement = createCard(element);
-    cards.prepend(cardElement);
-}
-function keyChecker(evt){
+
+export default function keyChecker(evt){
     if (evt.code=="Escape"){
         closePopup(document.querySelector(".popup_opened"))
     }
 }
-initialCards.forEach(addCard);
 popupCloseAddButton.addEventListener("click",()=>closePopup(popupAdd));
 popupCloseEditButton.addEventListener("click",()=>closePopup(popupEdit));
 popupClosePhotoButton.addEventListener("click",()=>closePopup(popupPhoto));
