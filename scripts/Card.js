@@ -1,30 +1,4 @@
 import keyChecker from "./index.js";
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 export default class Card{
     constructor(data,selector){
         this._text=data.name;
@@ -64,14 +38,9 @@ export default class Card{
     createCard(){
         this._card= this._getTemplate();
         this._card.querySelector(".card__photo").src=this._image;
+        this._card.querySelector(".card__photo").alt=this._text;
         this._card.querySelector(".card__title").textContent=this._text;
         this._setEventListeners(this._card);
         return this._card;
     }
 }
-initialCards.forEach((item)=>{
-    const card = new Card(item,".template-card")
-    const cardElement = card.createCard();
-    const cards=document.querySelector(".cards");
-    cards.prepend(cardElement)
-});

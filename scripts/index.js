@@ -1,5 +1,37 @@
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+initialCards.forEach((item)=>{
+    const card = new Card(item,".template-card")
+    const cardElement = card.createCard();
+    const cards=document.querySelector(".cards");
+    cards.prepend(cardElement)
+});
 const popup = document.querySelector(".popup");
 const popupList = document.querySelectorAll(".popup");
 const popupAdd = document.querySelector(".popup_add");
@@ -58,7 +90,7 @@ function submitFormAdd(e){
     formCardName.value=""; 
     formCardLink.value="";
     closePopup(popupAdd);
-    addFormValidator._setButtonState(formAdd.querySelector(".popup__save"), false, validationConfig)
+    addFormValidator.setButtonState(formAdd.querySelector(".popup__save"), false, validationConfig)
 }
 
 function generateCard(element){
