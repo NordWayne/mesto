@@ -6,13 +6,13 @@ export default class FormValidator{
         this.submitButton = this.form.querySelector(this.config.submitButtonSelector);
     }
     _showError(form, input, config) {
-        const error = this.form.querySelector(`#${this.input.id}-error`);
+        const error = this.form.querySelector(`#${input.id}-error`);
         error.textContent = input.validationMessage;
-        this.input.classList.add(this.config.inputInvalidClass);
+        input.classList.add(this.config.inputInvalidClass);
     }
 
-    _hideError(form,input) {
-        const error = form.querySelector(`#${input.id}-error`);
+    _hideError(form, input) {
+        const error = this.form.querySelector(`#${input.id}-error`);
         error.textContent = '';
         input.classList.remove(this.config.inputInvalidClass);
     }

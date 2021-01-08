@@ -26,10 +26,10 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+const cards=document.querySelector(".cards");
 initialCards.forEach((item)=>{
     const card = new Card(item,".template-card")
     const cardElement = card.createCard();
-    const cards=document.querySelector(".cards");
     cards.prepend(cardElement)
 });
 const popup = document.querySelector(".popup");
@@ -50,7 +50,7 @@ const formCardName = document.querySelector(".popup__input_card-name");
 const formCardLink = document.querySelector(".popup__input_card-link");
 const profileTitle = document.querySelector(".profile__name");
 const profileActivity = document.querySelector(".profile__activity");
-const cards=document.querySelector(".cards");
+
 const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',

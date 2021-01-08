@@ -37,8 +37,9 @@ export default class Card{
     }
     createCard(){
         this._card= this._getTemplate();
-        this._card.querySelector(".card__photo").src=this._image;
-        this._card.querySelector(".card__photo").alt=this._text;
+        const photo = this._card.querySelector(".card__photo");
+        photo.src=this._image;
+        photo.alt=this._text;
         this._card.querySelector(".card__title").textContent=this._text;
         this._setEventListeners(this._card);
         return this._card;
