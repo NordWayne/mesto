@@ -1,10 +1,10 @@
-import "../pages/index.css";
-import FormValidator from "./FormValidator.js";
-import Card from "./Card.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import Section from "./Section.js";
-import UserInfo from "./UserInfo.js"
+import "./index.css";
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js"
 
 const initialCards = [
     {
@@ -79,8 +79,17 @@ const userInfo = new UserInfo({
         data.src = item.link;
         data.textContent = item.name;
         popupWithImage.open(data);
-      }
-    }).createCard();
+      },
+        handleLikeClick: (likeButton)=>{
+            likeButton.classList.toggle("card__like_liked");
+        
+        },
+        handleRemoveClick: (delButton)=>{
+            const card = delButton.closest(".card");
+            card.remove();
+            }
+        
+        }).createCard();
   }
 const section = new Section({
     items: initialCards, 

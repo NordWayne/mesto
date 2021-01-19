@@ -1,10 +1,12 @@
 
 export default class Card{
-    constructor(data,selector, {handleCardClick}){ 
+    constructor(data,selector, {handleCardClick,handleLikeClick,handleRemoveClick}){ 
         this._name=data.name;
         this._link=data.link;
         this._selector = selector;
         this._handleCardClick = handleCardClick;
+        this._handleLikeClick = handleLikeClick;
+        this._handleRemoveClick = handleRemoveClick;
     }
     _getTemplate(){
         
@@ -21,11 +23,11 @@ export default class Card{
         
         });
         likeButton.addEventListener("click",()=>{
-            likeButton.classList.toggle("card__like_liked");
+            this._handleLikeClick(likeButton); 
         });
         delButton.addEventListener("click",()=>{
-            const card = delButton.closest(".card");
-            card.remove();
+            
+            this._handleRemoveClick(delButton);
         });
 
     }
