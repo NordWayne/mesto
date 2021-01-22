@@ -6,25 +6,12 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupConfirm from "../components/PopupConfirm.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js"
-import Api from "../components/Api.js"
+import Api from "../components/Api.js";
+import {editButton,addButton,formName,formActivity,profileTitle,profileActivity,
+    profileEditAvatar,profileAvatar,popupFormAdd,popupFormEdit,popupFormEditAvatar,validationConfig} from "../utils/constants";
 
 let userId = "";
 
-const editButton = document.querySelector(".profile__edit-button");
-const addButton = document.querySelector(".profile__add-button");
-const formName = document.querySelector(".popup__input_profile-name");
-const formActivity = document.querySelector(".popup__input_profile-activity");
-const profileTitle = document.querySelector(".profile__name");
-const profileActivity = document.querySelector(".profile__activity");
-const profileEditAvatar = document.querySelector(".profile__avatar-container");
-
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save',
-    inputInvalidClass: 'popup__input_state_invalid',
-    buttonInvalidClass: 'popup__save_invalid',
-};
 const editFormValidator = new FormValidator(validationConfig,document.querySelector(".popup__form_edit"));
 editFormValidator.enableValidation();
 const addFormValidator = new FormValidator(validationConfig,document.querySelector(".popup__form_add"));
@@ -36,7 +23,7 @@ const popupWithImage = new PopupWithImage(".popup_photo", ".popup__photo", ".pop
 popupWithImage.setEventListeners();
 
 const handleAddFormSubmit =(item) => {
-    document.querySelector(".popup__form_add").querySelector('.popup__save').textContent="Сохранение";
+    popupFormAdd.querySelector('.popup__save').textContent="Сохранение...";
     api.addCard(item.name,item.link)
         .then((res)=>{
             item._id=res._id;
@@ -48,27 +35,12 @@ const handleAddFormSubmit =(item) => {
         })
         .catch((err)=> console.log(err))
         .finally(()=> {
-            document.querySelector(".popup__form_add").querySelector('.popup__save').textContent="Сохранить";
+            popupFormAdd.querySelector('.popup__save').textContent="Сохранить";
         })
-
-}
-const handleEditFormSubmit =(item) => {
-    document.querySelector(".popup_edit").querySelector('.popup__save').textContent="Сохранение...";
-    console.log(item)
-        api.editUserInfo(item["profile-name"], item["profile-activity"])
-            .then(()=>{
-                userInfo.setUserInfo(item["profile-name"],
-                    item["profile-activity"]);
-            })
-            .catch((err)=>console.log(err))
-            .finally(()=> {
-                document.querySelector(".popup_edit").querySelector('.popup__save').textContent="Сохранить";
-            })
-
 }
 const handleEditAvatar = (item)=>{
     console.log(item.link)
-    document.querySelector(".popup_edit-avatar").querySelector('.popup__save').textContent="Сохранение...";
+    popupFormEditAvatar.querySelector('.popup__save').textContent="Сохранение...";
     api.editUserAvatar(item.link)
         .then(()=>{
             userInfo.setAvatar(item.link)
@@ -77,21 +49,36 @@ const handleEditAvatar = (item)=>{
         })
         .catch((err)=>console.log(err))
         .finally(()=> {
-            document.querySelector(".popup__form_add").querySelector('.popup__save').textContent="Сохранить";
+            popupFormEditAvatar.querySelector('.popup__save').textContent="Сохраненить";
         })
 }
 const popupAddCard = new PopupWithForm(".popup_add", handleAddFormSubmit);
-const popupEditProfile = new PopupWithForm(".popup_edit", handleEditFormSubmit);
+const popupEditProfile = new PopupWithForm(".popup_edit", (item)=> {
+    popupFormEdit.querySelector('.popup__save').textContent="Сохранение...";
+    api.editUserInfo(item["profile-name"], item["profile-activity"])
+        .then(() => {
+            userInfo.setUserInfo(item["profile-name"],
+                item["profile-activity"]);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+            popupFormEdit.querySelector('.popup__save').textContent="Сохранить";
+        });
+})
+
 const popupEditAvatar = new PopupWithForm(".popup_edit-avatar",handleEditAvatar);
 const popupConfirmDelete = new PopupConfirm(".popup_card-delete");
+
 popupConfirmDelete.setEventListeners();
 popupAddCard.setEventListeners();
 popupEditProfile.setEventListeners();
 popupEditAvatar.setEventListeners();
 
+console.log(profileAvatar.src)
 const userInfo = new UserInfo({
     name: profileTitle,
-    description: profileActivity
+    description: profileActivity,
+    avatar: profileAvatar // ссылка на аватар
   })
 function createCard(item) {
     const card = new Card(item, '.template-card', userId,{
@@ -107,12 +94,14 @@ function createCard(item) {
                      .then((data)=>{
                         card.setLikes(data.likes)
                     })
+                     .catch((err)=>console.log(err))
             }
             else{
                 api.likeCard(id)
                     .then((data)=>{
                         card.setLikes(data.likes)
                     })
+                    .catch((err)=>console.log(err))
             }
         
         },
@@ -160,10 +149,12 @@ const section = new Section({
     renderer: ((item) => {
         const cardElement = createCard(item);
         section.addItem(cardElement);
+
     })
   }, ".cards")
 
 editButton.addEventListener("click", ()=>{
+    editFormValidator.resetValidation()
     const user = userInfo.getUserInfo();
     formName.value = user.name;
     formActivity.value = user.description;
@@ -171,6 +162,7 @@ editButton.addEventListener("click", ()=>{
 
 addButton.addEventListener("click", ()=>{
     popupAddCard.open();
+    addFormValidator.resetValidation()
 } );
 profileEditAvatar.addEventListener("click", ()=>{
     popupEditAvatar.open();
