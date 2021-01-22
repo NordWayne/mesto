@@ -13,7 +13,12 @@
         <main class="main">
             <section class="profile">
                 <div class="profile__container">
-                    <img src="<%=require('./images/profile_pic.jpg')%>" class="profile__avatar" alt="Фото профиля">
+                    <div class="profile__avatar-container">
+                        <img src="<%=require('./images/profile_pic.jpg')%>" class="profile__avatar" alt="Фото профиля">
+                        <img src="<%=require('./images/editAvatar.svg')%>" class="profile__edit-avatar" alt="Изменить">
+
+
+                    </div>
                     <div class="profile__info">
                         <div class="profile__wrapper">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -66,7 +71,28 @@
                 <img class="popup__photo" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Фото">
                 <p class="popup__photo-title">Что-то</p>
             </div>
-        
+    </div>
+    <div class="popup popup_card-delete">
+        <div class="popup__content">
+            <button type="button" class="popup__close popup__close_delete-card"></button>
+            <h3 class="popup__title popup__title_margin-null">Вы уверены?</h3>
+            <form name = "delete-card" class="popup__form popup__form_delete-card">
+                <button type="submit" class="popup__save">Да</button>
+            </form>
+
+        </div>
+    </div>
+    <div class="popup popup_edit-avatar">
+        <div class="popup__content">
+            <button type="button" class="popup__close popup__close_edit-avatar"></button>
+            <h3 class="popup__title popup__title_margin-null">Обновить аватар</h3>
+            <form name = "change-title" class="popup__form popup__form_edit-avatar">
+                <input required  type="url" name = "link" placeholder="Ссылка на аватар" id="avatar-link" class="popup__input">
+                <span id="avatar-link-error" class="popup__error"></span>
+                <button type="submit" class="popup__save">Сохранить</button>
+            </form>
+
+        </div>
     </div>
     <template class="template-card">
         <li class="card">
@@ -74,7 +100,10 @@
             <button class="card__delete" type="button"></button>
             <div class="card__bottom">
                 <h2 class="card__title"></h2>
-                <button type="button" class="card__like"></button>
+                <div class="card__like-container">
+                    <button type="button" class="card__like"></button>
+                    <p class = card__like-counter>0</p>
+                </div>
             </div>
         </li>
     </template>

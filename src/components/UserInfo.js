@@ -15,4 +15,8 @@ export default class UserInfo{
         this._name.textContent = name;
         this._description.textContent = description
       }
+      setAvatar(avatarUrl){
+          const avatar = document.querySelector('.profile__avatar');
+          avatar.src = avatarUrl;
+      }
 }
