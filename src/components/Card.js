@@ -62,14 +62,23 @@ export default class Card{
         }
         return this._card;
     }
+
+
     setLikes(likes){
         this._likesCounter.textContent = likes.length;
+        console.log(this._userId)
         if (Object.values(likes).some(like => like._id === this._userId)) {
             this._likeIcon.classList.add('card__like_liked');
+
         } else {
+           
             this._likeIcon.classList.remove('card__like_liked');
         }
+
+
+
     }
+
     remove(){
         this._card.remove();
         this._card = null;
