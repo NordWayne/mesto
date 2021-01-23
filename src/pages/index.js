@@ -90,8 +90,11 @@ function createCard(item) {
       },
         handleLikeClick: (likeButton,id,isLiked)=>{
             if(isLiked){
+
                  api.unlikeCard(id)
                      .then((data)=>{
+                         //console.log(data)
+                         console.log(isLiked)
                         card.setLikes(data.likes)
                     })
                      .catch((err)=>console.log(err))
@@ -99,6 +102,8 @@ function createCard(item) {
             else{
                 api.likeCard(id)
                     .then((data)=>{
+                       // console.log(data)
+                        console.log(isLiked)
                         card.setLikes(data.likes)
                     })
                     .catch((err)=>console.log(err))
