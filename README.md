@@ -1,14 +1,13 @@
-# Интерактивное приложение
-Проект создан в ходе прохождения курса "Веб-разработчик" в Яндекс.Практикуме. 
-## Использованные технологии:
- - HTML5 семантическая вёрстка
+# Interactive App
+The project was created during the course "Web developer" in Yandex.Praktikum.
+## Technologies:
+ - HTML5 
  - CSS3 flexbox,grid
- - Адаптивность с медиазапросами
+ - Adaptive
  - JS DOM
  - API
 
-## Планы на проект
- - Перенести проект на реакт
+
 
  
 
