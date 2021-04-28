@@ -6,6 +6,8 @@ The project was created during the course "Web developer" in Yandex.Praktikum.
  - Adaptive
  - JS DOM
  - API
+
+
 Link:
 https://mesto.nordic.nomoredomains.icu/
 
